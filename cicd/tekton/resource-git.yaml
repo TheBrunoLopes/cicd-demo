@@ -7,6 +7,6 @@ spec:
   type: git
   params:
     - name: url
-      value: # your github repo. if it isn't public, you will need to create a secret for it.
+      value: https://github.com/CarlosMRDuarte/cicd-demo
     - name: revision
       value: master
