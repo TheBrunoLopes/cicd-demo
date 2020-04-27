@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  server:
+    image: drone/drone:1
+    volumes:
+      - /var/lib/drone:/data
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DRONE_GITHUB_SERVER: https://github.com
+      DRONE_GITHUB_CLIENT_ID: ${CLIENT_ID}
+      DRONE_GITHUB_CLIENT_SECRET: ${CLIENT_SECRET}
+      DRONE_RPC_SECRET: a537683849055e988472a05ac44826582 # hardcoded to be easier to bootstrap
+      DRONE_SERVER_HOST: ${URL}
+      DRONE_SERVER_PROTO: https
+    restart: always
+  runner:
+    image: drone/drone-runner-docker:1
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      DRONE_RPC_PROTO: https
+      DRONE_RPC_HOST: ${URL}
+      DRONE_RPC_SECRET: a537683849055e988472a05ac44826582
+      DRONE_RUNNER_CAPACITY: 2
+      DRONE_RUNNER_NAME: local-drone-ci

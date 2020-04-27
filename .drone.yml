@@ -1,0 +1,13 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: build-and-push
+  image: plugins/docker
+  settings:
+    username: # Your docker hub account username
+    password: # Your docker hub password
+    repo: # Create one repository to store the image
+    tags: latest

@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: resource-image
+  namespace: default
+spec:
+  type: image
+  params:
+    - name: url
+      value: # <your-docker-hub-image-repo>:<version> eg: user/img:latest

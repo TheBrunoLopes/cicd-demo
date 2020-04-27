@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: resource-git
+  namespace: default
+spec:
+  type: git
+  params:
+    - name: url
+      value: # your github repo. if it isn't public, you will need to create a secret for it.
+    - name: revision
+      value: master

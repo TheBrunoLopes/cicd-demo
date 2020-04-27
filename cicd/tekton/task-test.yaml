@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-test
+spec:
+  resources:
+    inputs:
+      - name: git-repo
+        type: git
+        targetPath: source # workspace/source
+  steps:
+    - name: test
+      image: maven:3-jdk-8
+      workingDir: "/workspace/source"
+      command:
+        - mvn
+      args:
+        - test
